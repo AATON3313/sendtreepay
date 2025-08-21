@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>樹速配 Send Tree Pay - 穩定幣支付示意App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>樹速配 Send Tree Pay</h1>
+        <p>穩定幣支付示意系統 - 專為華語地區設計</p>
+        
+        <form id="paymentForm">
+            <label for="recipient">收款人帳號：</label>
+            <input type="text" id="recipient" placeholder="輸入收款人帳號 (如: user@example.com)" required>
+            
+            <label for="amount">支付金額：</label>
+            <input type="number" id="amount" placeholder="輸入金額 (如: 100)" min="1" required>
+            
+            <label for="stablecoin">選擇穩定幣：</label>
+            <select id="stablecoin" required>
+                <option value="">-- 選擇穩定幣 --</option>
+                <option value="USDT">USDT (Tether)</option>
+                <option value="USDC">USDC (USD Coin)</option>
+                <option value="BUSD">BUSD (Binance USD)</option>
+            </select>
+            
+            <button type="submit">確認支付</button>
+        </form>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('paymentForm');
+        const result = document.getElementById('result');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const recipient = document.getElementById('recipient').value;
+            const amount = document.getElementById('amount').value;
+            const stablecoin = document.getElementById('stablecoin').value;
+            
+            if (recipient && amount && stablecoin) {
+                result.innerHTML = `支付成功！<br>向 ${recipient} 轉移 ${amount} ${stablecoin}。`;
+                result.style.color = '#4CAF50';
+            } else {
+                result.innerHTML = '請填寫所有欄位。';
+                result.style.color = '#f44336';
+            }
+        });
+    </script>
+</body>
+</html>
